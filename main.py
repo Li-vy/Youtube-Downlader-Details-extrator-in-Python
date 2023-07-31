@@ -8,11 +8,6 @@ root = Tk(className= " Youtube Video Downloader")
 
 directory = os.getcwd()
 
-def createFolder():
-    global directory
-    directory = directory + "/" + getTitle()
-    os.mkdir(directory)
-
 def getDirectory():
     global directory 
     directory = filedialog.askdirectory()
@@ -28,17 +23,20 @@ def getTitle():
             newTitle = newTitle + i 
         else:
             newTitle = newTitle + "_"
+    # newTitle = newTitle[0:len(newTitle)//2]
     return newTitle
 
 def downloadVideo():
     try : 
-        createFolder()
+        global directory
         yt = YouTube(userLink.get())
         print(yt.streams.filter(mime_type="audio/mp4"))
         video = yt.streams.get_by_itag(137)
         audio = yt.streams.get_by_itag(251)
         global videoTitle 
         videoTitle = video.title
+        directory = directory + "/" + getTitle()
+        os.mkdir(directory)
         directory_Video = directory + "/video.mp4"
         directory_Audio = directory + "/audio.webm"
         directory_Output = directory + "/" + getTitle() +".mp4"
@@ -49,6 +47,7 @@ def downloadVideo():
         audio.download(output_path = directory,filename = "audio.webm")
         combineFiles(directory_Video,directory_Audio,directory_Output)
     except Exception as e:
+        print(str(e))
         top = Toplevel(root)
         Label(top,text = "Error : "+str(e),font=('poopins',20)).pack()
 
