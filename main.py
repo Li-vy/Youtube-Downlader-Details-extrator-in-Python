@@ -6,9 +6,24 @@ from pytube import YouTube
 
 root = Tk(className= " Youtube Video Downloader")
 
+directory = os.getcwd()
+
 def getDirectory():
     global directory 
-    directory = filedialog.askdirectory(initialdir = os.getcwd())
+    directory = filedialog.askdirectory()
+    if directory == None:
+        directory = os.getcwd()
+
+def getTitle():
+    title = videoTitle
+    newTitle = ""
+    for i in title:
+        n = (ord(i))
+        if(n >= 48 and n <= 57 or n >= 65 and n <= 90 or n >= 97 and n <= 122):
+            newTitle = newTitle + i 
+        else:
+            newTitle = newTitle + "_"
+    return newTitle
 
 def downloadVideo():
     try : 
@@ -16,33 +31,32 @@ def downloadVideo():
         print(yt.streams.filter(mime_type="audio/mp4"))
         video = yt.streams.get_by_itag(137)
         audio = yt.streams.get_by_itag(251)
+        global videoTitle 
+        videoTitle = video.title
+        directory_Video = directory + "/video.mp4"
+        directory_Audio = directory + "/audio.webm"
+        directory_Output = directory + "/" + getTitle() +".mp4"
+        print(directory_Video,directory_Audio,directory_Output)
         # itag = 137 for 1080p videos 
         # itag = 251 for 160kbps audio
-        video.download(output_path= directory)
-        audio.download(output_path = directory)
-        directory_Video = directory + video.title + "mp4"
-        directory_Audio = directory + video.title + "webm"
-        print(directory_Video)
-        print(directory_Audio)
-        combineFiles(directory_Video,directory_Audio,directory)
+        video.download(output_path= directory, filename = "video.mp4")
+        audio.download(output_path = directory,filename = "audio.webm")
+        combineFiles(directory_Video,directory_Audio,directory_Output)
     except Exception as e:
         top = Toplevel(root)
-        Label(top,text = str(e),font=('poopins',20)).pack()
+        Label(top,text = "Error : "+str(e),font=('poopins',20)).pack()
 
-def combineFiles():
-    mp4_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/video.mp4"
-    webm_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/audio.webm"
-    output_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/output.mp4"
+def combineFiles(mp4_file, webm_file, output_file):
     try:
         subprocess.run(['ffmpeg', '-i', mp4_file, '-i', webm_file, '-c:v', 'copy', output_file], check=True)
         # ffmpeg -i video.mp4 -i audio.webm -c:v copy video480p.mp4
         os.remove(mp4_file)
         os.remove(webm_file)
         os.system('cls')
-        print("Combining MP4 and WebM files complete!")
     # except subprocess.CalledProcessError as e:
     except Exception as e:
-        print("Error: ", str(e))
+        top = Toplevel(root)
+        Label(top,text = "Error : "+str(e),font=('poopins',20)).pack()
 
 root.geometry("700x500")
 Label(root,text = "Youtube Video Downloader", font=("Poppins bold",20)).pack()
@@ -52,8 +66,8 @@ root.update()
 Entry(root,textvariable = userLink, font=('poopins',10)).place(x = 180,y = 81,anchor = NW, width = (root.winfo_width()-215))
 Label(root,text = "Select path : ", font = "poppins").place(x = 10,y = 110,anchor = NW)
 Button(text = "Browse", command = getDirectory).place(x = 140,y = 110,anchor = NW,)
-# Button(root,text="Submit",command = downloadVideo).pack(side = BOTTOM,expand = True)
-Button(root,text="Submit",command = combineFiles).pack(side = BOTTOM,expand = True)
+Button(root,text="Submit",command = downloadVideo).pack(side = BOTTOM,expand = True)
+# Button(root,text="Submit",command = combineFiles).pack(side = BOTTOM,expand = True)
 
 mainloop()
 
