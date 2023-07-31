@@ -29,9 +29,13 @@ def downloadVideo():
         top = Toplevel(root)
         Label(top,text = str(e),font=('poopins',20)).pack()
 
-def combineFiles(mp4_file, webm_file, output_file):
+def combineFiles():
+    mp4_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/video.mp4"
+    webm_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/audio.webm"
+    output_file = "C:/Users/Dell/Desktop/Study/Python/Final Project/Test/output.mp4"
     try:
-        subprocess.run(['ffmpeg', '-i', mp4_file, '-i', webm_file, '-c', 'copy', output_file], check=True)
+        subprocess.run(['ffmpeg', '-i', mp4_file, '-i', webm_file, '-c:v', 'copy', output_file], check=True)
+        # ffmpeg -i video.mp4 -i audio.webm -c:v copy video480p.mp4
         os.remove(mp4_file)
         os.remove(webm_file)
         os.system('cls')
@@ -48,7 +52,8 @@ root.update()
 Entry(root,textvariable = userLink, font=('poopins',10)).place(x = 180,y = 81,anchor = NW, width = (root.winfo_width()-215))
 Label(root,text = "Select path : ", font = "poppins").place(x = 10,y = 110,anchor = NW)
 Button(text = "Browse", command = getDirectory).place(x = 140,y = 110,anchor = NW,)
-Button(root,text="Submit",command = downloadVideo).pack(side = BOTTOM,expand = True)
+# Button(root,text="Submit",command = downloadVideo).pack(side = BOTTOM,expand = True)
+Button(root,text="Submit",command = combineFiles).pack(side = BOTTOM,expand = True)
 
 mainloop()
 
