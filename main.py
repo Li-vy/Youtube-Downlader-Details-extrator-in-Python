@@ -8,6 +8,11 @@ root = Tk(className= " Youtube Video Downloader")
 
 directory = os.getcwd()
 
+def createFolder():
+    global directory
+    directory = directory + "/" + getTitle()
+    os.mkdir(directory)
+
 def getDirectory():
     global directory 
     directory = filedialog.askdirectory()
@@ -27,6 +32,7 @@ def getTitle():
 
 def downloadVideo():
     try : 
+        createFolder()
         yt = YouTube(userLink.get())
         print(yt.streams.filter(mime_type="audio/mp4"))
         video = yt.streams.get_by_itag(137)
