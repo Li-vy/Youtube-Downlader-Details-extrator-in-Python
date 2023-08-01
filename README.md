@@ -13,7 +13,7 @@ The YouTube Video Downloader is a Python script that lets users download YouTube
 pip install pytube
 ```
 
-2. Make sure you have 'FFmpeg' installed on your system. If not, download it from the official website and add it to your system's PATH.
+2. Make sure you have `FFmpeg` installed on your system. If not, download it from the official website and add it to your system's PATH.
 
 ### Features
 
@@ -25,8 +25,8 @@ pip install pytube
 
 1. Run the script, and a GUI window will appear.
 2. Enter the YouTube video link in the input field.
-3. Click on the "Browse" button to select the download directory (optional).
-4. Click the "Download" button to initiate the download process.
+3. Click on the `Browse` button to select the download directory (optional).
+4. Click the `Download` button to initiate the download process.
 
 ### Author
 
@@ -39,11 +39,11 @@ Vishhal Narkar
 
 ### Note
 
-- The script requires an active internet connection to download videos.
-- Ensure that you have permission to download and use the videos in compliance with YouTube's terms of service.
+- The script requires an `active internet connection` to download videos.
+- Ensure that you have `permission to download` and use the videos in compliance with YouTube's terms of service.
 
 ### Disclaimer
 
-This script is intended for personal use only. Downloading copyrighted materials from YouTube may violate their terms of service and may be illegal in some jurisdictions. The author is not responsible for any misuse of this script.
+This script is intended for `personal use only.` Downloading copyrighted materials from YouTube may violate their terms of service and may be illegal in some jurisdictions. The author is not responsible for any misuse of this script.
 
 Enjoy downloading your favorite YouTube videos hassle-free with this handy Python script!
