@@ -13,7 +13,7 @@ The YouTube Video Downloader is a Python script that lets users download YouTube
 pip install pytube
 ```
 
-2. Make sure you have FFmpeg installed on your system. If not, download it from the official website and add it to your system's PATH.
+2. Make sure you have 'FFmpeg' installed on your system. If not, download it from the official website and add it to your system's PATH.
 
 ### Features
 
