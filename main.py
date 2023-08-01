@@ -6,6 +6,8 @@ from tkinter import filedialog # Used to ask directory
 from tkinter import messagebox # Used to show error statement in a popup
 from pytube import YouTube # Used to download Youtube Videos
 
+directory = os.getcwd() #initiated directory to current working directory. 
+
 # Functions Declared 
 def getDirectory():     # Function to ask user the directory to download the file 
     global directory 
@@ -61,14 +63,12 @@ def combineFiles(mp4_file, webm_file, output_file):     # Function that combines
 # GUI 
 
 root = Tk(className= " Youtube Video Downloader")
-directory = os.getcwd()
 root.geometry("500x300")
-Label(root,text = "Youtube Video Downloader", font=("Poppins bold",20)).pack()
+Label(root,text = "Youtube Video Downloader",font=("Poppins bold",20),foreground = "red").pack()
 Label(root,text = "Enter your Link here : ", font = "poppins").place(x = 10,y = 75,anchor = NW)
 userLink = StringVar()
-root.update()
-Entry(root,textvariable = userLink, font=("poopins",10)).place(x = 180,y = 81,anchor = NW, width = (root.winfo_width()-215))
+Entry(root,textvariable = userLink, font=("poopins",10)).place(x = 180,y = 81,anchor = NW, width = 285)
 Label(root,text = "Select path : ", font = "poppins").place(x = 10,y = 110,anchor = NW)
-Button(text = "Browse", command = getDirectory).place(x = 140,y = 110,anchor = NW,)
-Button(root,text="Download",command = downloadVideo).pack(side = BOTTOM,pady = 50)
+Button(root,text = "Browse", command = getDirectory).place(x = 140,y = 110,anchor = NW,)
+Button(root,text="Download",command = downloadVideo, bg = "red").pack(side = BOTTOM,pady = 50)
 mainloop()
