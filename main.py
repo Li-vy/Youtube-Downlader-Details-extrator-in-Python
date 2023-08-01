@@ -32,10 +32,8 @@ def downloadVideo():    # Function that downloads videos, this function also cal
         global directory
         yt = YouTube(userLink.get())
         print(yt.streams.filter(mime_type="audio/mp4"))
-        video = yt.streams.get_by_itag(137)
-        audio = yt.streams.get_by_itag(251)
         global videoTitle 
-        videoTitle = video.title
+        videoTitle = yt.title
         directory = directory + "/" + getTitle()
         os.mkdir(directory)
         directory_Video = directory + "/video.mp4"
@@ -44,8 +42,8 @@ def downloadVideo():    # Function that downloads videos, this function also cal
         print(directory_Video,directory_Audio,directory_Output)
         # itag = 137 for 1080p videos (mp4)
         # itag = 251 for 160kbps audio (webm)
-        video.download(output_path= directory, filename = "video.mp4")
-        audio.download(output_path = directory,filename = "audio.webm")
+        yt.streams.get_by_itag(137).download(output_path= directory, filename = "video.mp4")
+        yt.streams.get_by_itag(251).download(output_path = directory,filename = "audio.webm")
         combineFiles(directory_Video,directory_Audio,directory_Output)
     except Exception as e:
         messagebox.showerror(title = "Error", message = "Error : "+str(e))
