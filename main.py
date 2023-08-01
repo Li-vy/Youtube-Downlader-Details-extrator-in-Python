@@ -1,5 +1,5 @@
 # Header Files 
-import os # Used to create directories, get current directories, deleate files
+import os as os # Used to create directories, get current directories, deleate files
 import subprocess # Used to use 'ffmeg' tool combining audio and video in one file 
 from tkinter import * # GUI 
 from tkinter import filedialog # Used to ask directory 
