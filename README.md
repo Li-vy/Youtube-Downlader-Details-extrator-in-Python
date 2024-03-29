@@ -44,6 +44,6 @@ Vishhal Narkar
 
 ## Disclaimer
 
-This script is intended for `personal use only.` Downloading copyrighted materials from YouTube may violate their terms of service and may be illegal in some jurisdictions. The author is not responsible for any misuse of this script.
+This script is intended for `educational use only.` Downloading copyrighted materials from YouTube may violate their terms of service and may be illegal in some jurisdictions. The author is not responsible for any misuse of this script.
 
 Enjoy downloading your favorite YouTube videos hassle-free with this handy Python script!
